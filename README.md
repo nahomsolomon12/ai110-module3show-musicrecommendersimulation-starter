@@ -52,6 +52,22 @@ This system might over-prioritize whichever features are assigned higher weights
 
 ![Recommendation Output](output.png)
 
+### Profile Test Results
+
+Below are the recommendations for each user profile, showing how the system behaves with different preferences:
+
+#### Profile 1: High-Energy Pop
+![High-Energy Pop Results](high.png)
+
+#### Profile 2: Chill Lofi
+![Chill Lofi Results](chill.png)
+
+#### Profile 3: Deep Intense Rock
+![Deep Intense Rock Results](deep.png)
+
+#### Profile 4: Ambiguous Mix (Skew Test)
+![Ambiguous Mix Results](skew.png)
+
 ---
 
 ## Getting Started
