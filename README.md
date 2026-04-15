@@ -21,11 +21,16 @@ Explain your design in plain language.
 
 Some prompts to answer:
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
+- What features does each `Song` use in your system?
+Each song is scored using singer notoriety, danceability, and mood.
+  - For example: genre, mood, energy, and tempo.
+- What information does your `UserProfile` store?
+The `UserProfile` stores the user's recent listening history, including the danceability and mood patterns of songs they have played.
 - How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+The recommender scores each song by comparing it to the user's recent listening history, especially the average of the last five songs played. If there is not enough listening history yet, it uses singer notoriety as a fallback feature to help make an initial recommendation. When the user's taste appears mixed or less specific, the system also defaults to singer notoriety as a reliable baseline for scoring.
+
+- How do you choose which songs to recommend?
+The recommender ranks songs by score and recommends the highest-scoring matches.
 
 You can include a simple diagram or bullet list if helpful.
 
