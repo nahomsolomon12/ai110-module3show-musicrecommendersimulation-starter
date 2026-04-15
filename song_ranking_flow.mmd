@@ -1,0 +1,19 @@
+flowchart TD
+    A[data/songs.csv] --> B[load_songs]
+    B --> C[songs list]
+
+    U[user_prefs dictionary] --> D[recommend_songs]
+    C --> D
+
+    D --> E[Pick one song from songs list]
+    E --> F[Compare song fields to user profile targets]
+    F --> G[Compute compatibility score]
+    G --> H[Attach explanation]
+    H --> I[Store tuple: song, score, explanation]
+
+    I --> J{More songs left?}
+    J -->|Yes| E
+    J -->|No| K[Sort all tuples by score descending]
+
+    K --> L[Take top-k]
+    L --> M[Ranked recommendations printed in main.py]

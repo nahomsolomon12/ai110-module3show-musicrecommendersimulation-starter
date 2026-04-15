@@ -9,25 +9,36 @@ You will implement the functions in recommender.py:
 - recommend_songs
 """
 
-from recommender import load_songs, recommend_songs
+from pathlib import Path
+
+try:
+    from src.recommender import load_songs, recommend_songs
+except ModuleNotFoundError:
+    from recommender import load_songs, recommend_songs
 
 
 def main() -> None:
-    songs = load_songs("data/songs.csv") 
+    project_root = Path(__file__).resolve().parent.parent
+    songs_csv = project_root / "data" / "songs.csv"
+    songs = load_songs(str(songs_csv))
+    print(f"Loaded songs: {len(songs)}")
 
-    # Starter example profile
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    # Static target profile for repeatable recommendations
+    user_prefs = {
+        "genre": "pop",
+        "mood": "happy",
+        "energy": 0.78,
+        "danceability": 0.82,
+        "singer_notoriety": 0.75,
+    }
 
     recommendations = recommend_songs(user_prefs, songs, k=5)
 
     print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
-        print()
+    for index, rec in enumerate(recommendations, start=1):
+        song, score, _ = rec
+        total_points = score * 100
+        print(f"{index}. {song['title']} ({total_points:.1f} pts)")
 
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ Some prompts to answer:
 
 - What features does each `Song` use in your system?
 Each song is scored using singer notoriety, danceability, and mood.
-  - For example: genre, mood, energy, and tempo.
+   - For example: genre, mood, energy, and tempo.
 - What information does your `UserProfile` store?
 The `UserProfile` stores the user's recent listening history, including the danceability and mood patterns of songs they have played.
 - How does your `Recommender` compute a score for each song
@@ -33,6 +33,24 @@ The recommender scores each song by comparing it to the user's recent listening 
 The recommender ranks songs by score and recommends the highest-scoring matches.
 
 You can include a simple diagram or bullet list if helpful.
+
+### Algorithm Recipe
+
+1. Load songs from `data/songs.csv` into a list of song records.
+2. Define a user profile dictionary with target values (for example mood, danceability, and singer notoriety).
+3. For each song, compare song features to user profile targets.
+4. Compute a single compatibility score using weighted feature matches.
+5. Attach a short explanation describing why the score is high or low.
+6. Sort all songs by score from highest to lowest.
+7. Return the top-k songs as recommendations.
+
+### Potential Bias Note
+
+This system might over-prioritize whichever features are assigned higher weights (for example mood or genre), which can hide strong songs that match the user in other ways. It may also favor highly visible artists if singer notoriety is weighted too strongly, reducing discovery of lesser-known tracks.
+
+### Sample Output
+
+![Recommendation Output](output.png)
 
 ---
 
